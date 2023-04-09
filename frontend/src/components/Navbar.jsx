@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import {
     Box,Heading,
     Flex,
@@ -13,30 +13,78 @@ import {
     useColorModeValue,
     Stack,
     useColorMode,
-    Center,
+    Center,useToast,
   } from '@chakra-ui/react';
   import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
-
-
 const Navbar = () => {
     const { colorMode, toggleColorMode } = useColorMode();
+    const navigate=useNavigate();
+    const toast = useToast();
    
+    let token=JSON.parse(localStorage.getItem("token"))
+   
+    //logout
+    const handleLogout=()=>{
+      localStorage.removeItem("token")
+      toast({
+        title: 'Logout Successfull',
+        description: "You are redirectd to Login Page",
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
+      navigate("/login")
+    }
+
+    //allpost
+    const hanldeallPost=()=>{
+if(token){
+  navigate("/allpost")
+}
+else{
+  toast({
+    title: 'Login First',
+    description: "You are redirectd to Login Page",
+    status: 'success',
+    duration: 9000,
+    isClosable: true,
+  })
+  navigate("/login")
+}
+    }
+
+    //new Post
+    const hanldeallPost2=()=>{
+      if(token){
+        navigate("/post")
+      }
+      else{
+        toast({
+          title: 'Login First',
+          description: "You are redirectd to Login Page",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+        navigate("/login")
+      }
+          }
+
+
     return (
       <>
         <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
           <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
            
-            <Heading w={40}>
-            <Link to="/post">
+            <Heading w={40} onClick={hanldeallPost2} cursor={'pointer'}>
+            {/* <Link to="/post"> */}
             New Post
-                </Link>
+                {/* </Link> */}
                 </Heading>
 
-                <Heading w={40}>
-            <Link to="/allpost">
+                <Heading w={40} onClick={hanldeallPost} cursor={'pointer'}>
             All Post
-                </Link>
                 </Heading>
             
             <Flex alignItems={'center'}>
@@ -67,7 +115,7 @@ const Navbar = () => {
                     </Center>
                     <br />
                     <Center>
-                      <p>Username</p>
+                      <p>UserName</p>
                     </Center>
                     <br />
                     <MenuDivider />
@@ -86,6 +134,10 @@ const Navbar = () => {
 
                     <MenuItem>
                     Update Name
+                    </MenuItem>
+
+                    <MenuItem onClick={handleLogout}> 
+                Logout
                     </MenuItem>
 
                     <MenuItem>

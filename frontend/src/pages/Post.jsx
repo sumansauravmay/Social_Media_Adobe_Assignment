@@ -21,8 +21,9 @@ import Footer from '../components/Footer';
 const Post = () => {
   const toast = useToast();
 const [content,setContent]=useState("")
-// content
+
 let token=JSON.parse(localStorage.getItem("token"))
+
 console.log(token)
 const handlePostNew=()=>{
   let payload={
@@ -45,6 +46,7 @@ const handlePostNew=()=>{
     }})
     .then((res)=>{
       console.log(res.data)
+      window.location.reload()
       toast({
         title: 'Posted Successfully',
         description: "Congratulations",
@@ -52,6 +54,7 @@ const handlePostNew=()=>{
         duration: 9000,
         isClosable: true,
       })
+      
     })
   }
 }
@@ -75,8 +78,7 @@ const handlePostNew=()=>{
                   <Text mt={{ sm: 3, md: 3, lg: 5 }} color="gray.500">
                     Text Your Idea Free
                   </Text>
-                  
-                  
+                   
                 </Box>
               </WrapItem>
               <WrapItem>
