@@ -32,6 +32,12 @@ const Navbar = () => {
             New Post
                 </Link>
                 </Heading>
+
+                <Heading w={40}>
+            <Link to="/allpost">
+            All Post
+                </Link>
+                </Heading>
             
             <Flex alignItems={'center'}>
               <Stack direction={'row'} spacing={7}>
@@ -67,7 +73,7 @@ const Navbar = () => {
                     <MenuDivider />
 
                     <MenuItem>
-                    <Link to="/register">
+                    <Link to="/">
                 Sign Up
                 </Link>
                     </MenuItem>

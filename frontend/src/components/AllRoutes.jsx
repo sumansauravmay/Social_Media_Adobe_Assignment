@@ -12,8 +12,8 @@ import { Routes,Route } from 'react-router-dom'
 const AllRoutes = () => {
   return (
     <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/register" element={<Signup/>}></Route>
+        <Route path="/" element={<Signup/>}></Route>
+        <Route path="/allpost" element={<Home/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/delete_user" element={<Userdelete/>}></Route>
         {/* <Route path="/update_user" element={<UserUpdate/>}></Route> */}

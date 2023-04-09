@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from "axios";
+import { useToast } from '@chakra-ui/react'
 import {
     Container,
     Flex,
@@ -17,6 +19,43 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const Post = () => {
+  const toast = useToast();
+const [content,setContent]=useState("")
+// content
+let token=JSON.parse(localStorage.getItem("token"))
+console.log(token)
+const handlePostNew=()=>{
+  let payload={
+    content
+  }
+  if(content==="")
+  {
+    toast({
+      title: 'Please fill the details carefully',
+      description: "email or password or both are empty",
+      status: 'error',
+      duration: 9000,
+      isClosable: true,
+    })
+  }
+  else{
+    axios.post("http://localhost:4000/post",payload,{ 
+      headers: {
+      "Authorization": token
+    }})
+    .then((res)=>{
+      console.log(res.data)
+      toast({
+        title: 'Posted Successfully',
+        description: "Congratulations",
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
+    })
+  }
+}
+
   return (
     <>
     <Navbar/>
@@ -43,11 +82,10 @@ const Post = () => {
                 <Box bg="white" borderRadius="lg">
                   <Box m={8} color="#0B0E3F">
                     <VStack spacing={5}>
-                     
-                     
+                
                       <FormControl id="name">
                         <FormLabel>Text</FormLabel>
-                        <Textarea
+                        <Textarea value={content} onChange={(e)=>setContent(e.target.value)}
                           borderColor="gray.300"
                           _hover={{
                             borderRadius: 'gray.300',
@@ -56,7 +94,7 @@ const Post = () => {
                         />
                       </FormControl>
                       <FormControl id="name" float="right">
-                        <Button
+                        <Button onClick={handlePostNew}
                           variant="solid"
                           bg="#0D74FF"
                           color="white"

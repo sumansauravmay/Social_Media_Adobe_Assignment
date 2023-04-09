@@ -40,16 +40,15 @@ const handleLogin=()=>{
         axios.post("http://localhost:4000/login",payload)
         .then((res)=>{
             console.log(res.data)
-            console.log()
             toast({
                 title: 'Login Successfully',
-                description: "You are redirectd to Home Page",
+                description: "You are redirectd to all posts",
                 status: 'success',
                 duration: 9000,
                 isClosable: true,
               })
               localStorage.setItem("token",JSON.stringify(res.data.token))
-              navigate("/")
+              navigate("/post")
         })
         .catch((err)=>console.log(err))
     }
