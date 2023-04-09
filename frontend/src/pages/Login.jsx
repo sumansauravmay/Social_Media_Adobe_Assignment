@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from "axios";
+import {Link,useNavigate} from "react-router-dom"
 import {
     Flex,
     Box,
@@ -6,16 +8,54 @@ import {
     FormLabel,
     Input,
     Stack,
-    Link,
     Button,
     Heading,
     Text,
     useColorModeValue,
   } from '@chakra-ui/react';
+  import { useToast } from '@chakra-ui/react'
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const Login = () => {
+    const toast = useToast();
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+    const navigate=useNavigate()
+
+const handleLogin=()=>{
+    const payload={
+        email,password
+    }
+    if(email===""||password===""){
+        toast({
+            title: 'Please fill the details carefully',
+            description: "email or password or both are empty",
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+          })
+    }
+    else{
+        axios.post("http://localhost:4000/login",payload)
+        .then((res)=>{
+            console.log(res.data)
+            console.log()
+            toast({
+                title: 'Login Successfully',
+                description: "You are redirectd to Home Page",
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+              })
+              localStorage.setItem("token",JSON.stringify(res.data.token))
+              navigate("/")
+        })
+        .catch((err)=>console.log(err))
+    }
+}
+
+
   return (
     <>
     <Navbar/>
@@ -40,21 +80,21 @@ const Login = () => {
     
               <FormControl id="email">
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" />
               </FormControl>
     
               <FormControl id="password">
                 <FormLabel>Password</FormLabel>
-                <Input type="password" />
+                <Input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" />
               </FormControl>
-    
+              {/* colorScheme */}
               <Stack spacing={10}>
                 <Button
                   bg={'blue.400'}
                   color={'white'}
                   _hover={{
                     bg: 'red.500',
-                  }}>
+                  }} onClick={handleLogin}>
                  Log In
                 </Button>
               </Stack>

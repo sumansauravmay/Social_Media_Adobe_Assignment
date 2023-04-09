@@ -34,7 +34,7 @@ const handleSignup=()=>{
     {
         toast({
             title: 'Please fill the details carefully',
-            description: "Put details",
+            description: "One or more than one inputs are empty",
             status: 'error',
             duration: 9000,
             isClosable: true,
