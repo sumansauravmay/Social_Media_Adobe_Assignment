@@ -97,7 +97,6 @@ else{
                   <MenuButton
                     as={Button}
                     rounded={'full'}
-                    // variant={'link'}
                     cursor={'pointer'}
                     minW={0}>
                     <Avatar
