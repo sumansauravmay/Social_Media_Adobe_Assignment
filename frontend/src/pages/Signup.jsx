@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Flex,
     Box,
@@ -6,15 +6,57 @@ import {
     FormLabel,
     Input,
     Stack,
-    Link,
     Button,
     Heading,
     Text,
     useColorModeValue,
   } from '@chakra-ui/react';
+  import { useToast } from '@chakra-ui/react'
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import axios from 'axios';
+import {Link,useNavigate} from "react-router-dom"
 
 const Signup = () => {
+    const toast = useToast()
+    const [name,setName]=useState("")
+    const [email,setEmail]=useState("")
+    const [bio,setBio]=useState("")
+    const [password,setPassword]=useState("")
+    const navigate=useNavigate()
+
+
+const handleSignup=()=>{
+    let payload={
+        name,email,bio,password
+    }
+    if(name===""||email===""||bio===""||password==="")
+    {
+        toast({
+            title: 'Please fill the details carefully',
+            description: "Put details",
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+          })
+    }
+    else{
+        axios.post("http://localhost:4000/register",payload)
+        .then((res)=>{
+            console.log(res.data)
+            toast({
+                title: 'Sign up Successfully done',
+                description: "Please login now",
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+              })
+              navigate("/login")
+        })
+    }
+   
+}
+
   return (
     <>
 <Navbar/>
@@ -39,22 +81,23 @@ const Signup = () => {
 
         <FormControl id="name">
             <FormLabel>Name</FormLabel>
-            <Input type="text" />
+            <Input value={name} onChange={(e)=>setName(e.target.value)} type="text" />
           </FormControl>
 
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
-            <Input type="email" />
+            <Input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" />
           </FormControl>
 
           <FormControl id="password">
             <FormLabel>Password</FormLabel>
-            <Input type="password" />
+            <Input value={password} onChange={(e)=>setPassword(e.target.value)} 
+            type="text" />
           </FormControl>
 
           <FormControl id="bio">
             <FormLabel>Your Bio</FormLabel>
-            <Input h={'20'} type="text" />
+            <Input h={'20'} value={bio} onChange={(e)=>setBio(e.target.value)} type="text" />
           </FormControl>
 
           <Stack spacing={10}>
@@ -63,7 +106,7 @@ const Signup = () => {
               color={'white'}
               _hover={{
                 bg: 'green.500',
-              }}>
+              }} onClick={handleSignup}>
               Sign Up
             </Button>
           </Stack>
@@ -71,6 +114,7 @@ const Signup = () => {
       </Box>
     </Stack>
   </Flex>
+  <Footer/>
   </>
   )
 }

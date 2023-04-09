@@ -14,6 +14,7 @@ import {
     Textarea,
   } from '@chakra-ui/react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Post = () => {
   return (
@@ -72,6 +73,7 @@ const Post = () => {
         </Box>
       </Flex>
     </Container>
+    <Footer/>
     </>
   )
 }

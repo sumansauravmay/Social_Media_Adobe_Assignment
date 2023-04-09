@@ -13,6 +13,7 @@ import {
     useColorModeValue,
   } from '@chakra-ui/react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Login = () => {
   return (
@@ -61,6 +62,7 @@ const Login = () => {
           </Box>
         </Stack>
       </Flex>
+      <Footer/>
       </>
   )
 }
