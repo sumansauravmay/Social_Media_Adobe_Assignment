@@ -76,6 +76,7 @@ const handlePostNew=()=>{
                     Text Your Idea Free
                   </Text>
                   
+                  
                 </Box>
               </WrapItem>
               <WrapItem>
