@@ -55,51 +55,39 @@ Tata 1mg is India’s leading consumer health platform. It provides services, in
 
 ### Homepage -
 
-This is the main landing page of our website. Here, if you clicked on any navigation then you will redirect to respective page. Also, we have added searching of product option with debouncing feature.
+This is the main landing page of our website. If you want to see the all post or Add new post, You need to Sign up first. If you are already registered, You need to login.
 
 All pages are responsive.
 
-![landing_page](https://user-images.githubusercontent.com/105916064/213938491-d79b65a6-b0a2-4a2c-bb7d-db08ab181d91.png)
+![landing_page](https://i.postimg.cc/jj5mpt2x/home.jpg)
 
 ### Sign up Page -
 
 On this page, you can register a user. If the user is already registered, you can simply sign in by providing valid details of the user. 
 
-![signup](https://user-images.githubusercontent.com/105916064/214049776-17fcbfcc-947e-46c9-b61a-22a84dcff769.png)
+![signup](https://i.postimg.cc/t4zBRfws/signup-2.jpg)
 
 ###  Sign in Page - 
 
 On this page, you have to login with your registered email and password .you can simply sign in by providing valid details of the user. 
 
-![Login](https://user-images.githubusercontent.com/105916064/214049832-4efedc58-9bb6-4179-8ad0-b14f20869d26.png)
+![Login](https://i.postimg.cc/C51gJk8N/login-2.jpg)
 
-### Products Page -
+### All Posts Page -
 
-Here users can browse, `filter` the product based on `brand and discound`, `sort` by `price or rating`, filter and sort will work togather and add items to the cart by clicking on the `Add to Cart` button.
+Here users can see all the posts. If he is not loged In, It will redirect to Log In Page and ask to Log In first. You can delete your posts.
  
- ![product](https://user-images.githubusercontent.com/105916064/213938969-0fdb0fa7-dac5-4d44-b285-53032655c9f8.png)
+ ![All_Posts](https://i.postimg.cc/mrzV3DhH/allpost.jpg)
 
-### Products Details Page -
+### Add new Posts -
 
-![product_details](https://user-images.githubusercontent.com/105916064/213939243-1d874976-ce30-4f65-b4de-1714d7222bd8.png)
-
-### Cart Page -
-
-Here all the products added to the cart will be shown. On this page, By Clicking on add to cart your cart added successfully.
-
-![cart](https://user-images.githubusercontent.com/105916064/213939230-fb8aa16b-b6e9-455b-8b14-d2c281a022ac.png)
-
-### Order Summary Page -
-
-On this page, you can see your order details. you can `remove` the item from cart and also, `increase` or `decrease` count. By clicking on the payment button you will be redirect to the checkout page.
-
-![cart](https://user-images.githubusercontent.com/105916064/214049958-760780f2-99eb-405e-9d11-faac14e08416.png)
+![Add_New_Post](https://i.postimg.cc/tTD1Ydyt/new-post.jpg)
 
 ### Footer Page -
 
 On This Page there is info about the site....
 
-![footer](https://user-images.githubusercontent.com/105916064/214050102-eb35d759-ec57-490d-b45c-5cef8cfe056e.png)
+![footer](https://i.postimg.cc/ZqnYwkh3/footer-2.jpg)
 
 
 ## Run Locally
