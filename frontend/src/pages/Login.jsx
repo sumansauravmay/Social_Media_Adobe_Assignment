@@ -49,6 +49,7 @@ const handleLogin=()=>{
               })
               localStorage.setItem("token",JSON.stringify(res.data.token))
               localStorage.setItem("userid",JSON.stringify(res.data.userID))
+              localStorage.setItem("username",JSON.stringify(res.data.username))
               navigate("/allpost")
         })
         .catch((err)=>console.log(err))

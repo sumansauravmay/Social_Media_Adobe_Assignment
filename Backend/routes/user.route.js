@@ -42,7 +42,7 @@ userRoute.post("/login",async(req,res)=>{
            // result == true
 if(result){
     const token = jwt.sign({userID:user[0]._id}, 'masai');
-    res.send({"msg":"Login successful","token":token,"userID":user[0]._id});
+    res.send({"msg":"Login successful","token":token,"userID":user[0]._id,"username":user[0].name});
 }
 else{
     res.send("wrong credential");

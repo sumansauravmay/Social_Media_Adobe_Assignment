@@ -24,12 +24,14 @@ const Navbar = () => {
     const toast = useToast();
    
     let token=JSON.parse(localStorage.getItem("token"))
-   let userid=JSON.parse(localStorage.getItem("userid"))
+   let userid=JSON.parse(localStorage.getItem("userid"));
+   let username=JSON.parse(localStorage.getItem("username"));
 
     //logout
     const handleLogout=()=>{
       localStorage.removeItem("token")
       localStorage.removeItem("userid")
+      localStorage.removeItem("username")
       toast({
         title: 'Logout Successfull',
         description: "You are redirectd to Login Page",
@@ -94,9 +96,10 @@ else{
         
         localStorage.removeItem("token")
       localStorage.removeItem("userid")
-      
+      localStorage.removeItem("username")
     })
           }
+
 
 
     return (
@@ -141,7 +144,10 @@ else{
                     </Center>
                     <br />
                     <Center>
-                      <p>UserName</p>
+                      <Heading>
+                        {/* {username?username:"Username"} */}
+                        Username
+                        </Heading>
                     </Center>
                     <br />
                     <MenuDivider />
@@ -159,7 +165,9 @@ else{
                     </MenuItem>
 
                     <MenuItem>
+                      <Link to="/update_name">
                     {token?"Update Name":""}
+                    </Link>
                     </MenuItem>
 
                     <MenuItem onClick={handleLogout}> 
