@@ -27,7 +27,7 @@ const UserUpdate = () => {
 
 const handleNewName=(userid)=>{
   const payload={name}
-  axios.patch(`http://localhost:4000/update_user/${userid}`,payload,{
+  axios.patch(`https://crimson-coyote-gear.cyclic.app/update_user/${userid}`,payload,{
     headers:{
       "Authorization":token
     }

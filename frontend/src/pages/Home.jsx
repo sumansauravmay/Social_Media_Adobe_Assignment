@@ -46,7 +46,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
     let token=JSON.parse(localStorage.getItem("token"))
 
     const getData=()=>{
-      return axios.get("https://sore-blue-marlin-suit.cyclic.app/",{
+      return axios.get("https://crimson-coyote-gear.cyclic.app/",{
         headers: {
           "Authorization": token
         }
@@ -63,7 +63,7 @@ useEffect(()=>{
 
 //delete
 const handleDelete=(_id)=>{
-    axios.delete(`https://sore-blue-marlin-suit.cyclic.app/delete/${_id}`,{
+    axios.delete(`https://crimson-coyote-gear.cyclic.app/delete/${_id}`,{
         headers:{
             "Authorization":token
         }
@@ -93,7 +93,7 @@ const handleupdatefunc=(_id)=>{
   let payload={
       content
   }
-  axios.patch(`https://sore-blue-marlin-suit.cyclic.app/update/${_id}`,payload,{
+  axios.patch(`https://crimson-coyote-gear.cyclic.app/update/${_id}`,payload,{
     headers:{
         "Authorization":token
     }

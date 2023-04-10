@@ -78,7 +78,7 @@ else{
 
           //delete Account
           const handleDelete=(userid)=>{
-            axios.delete(`http://localhost:4000/delete_user/${userid}`,{
+            axios.delete(`https://crimson-coyote-gear.cyclic.app/delete_user/${userid}`,{
         headers:{
             "Authorization":token
         }

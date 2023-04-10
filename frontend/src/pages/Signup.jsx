@@ -41,7 +41,7 @@ const handleSignup=()=>{
           })
     }
     else{
-        axios.post("https://sore-blue-marlin-suit.cyclic.app/register",payload)
+        axios.post("https://crimson-coyote-gear.cyclic.app/register",payload)
         .then((res)=>{
             console.log(res.data)
             toast({

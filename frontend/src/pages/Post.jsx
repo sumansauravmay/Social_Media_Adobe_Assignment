@@ -40,7 +40,7 @@ const handlePostNew=()=>{
     })
   }
   else{
-    axios.post("https://sore-blue-marlin-suit.cyclic.app/post",payload,{ 
+    axios.post("https://crimson-coyote-gear.cyclic.app/post",payload,{ 
       headers: {
       "Authorization": token
     }})
