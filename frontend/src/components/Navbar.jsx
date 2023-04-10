@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link,useNavigate } from 'react-router-dom';
+import axios from "axios";
 import {
     Box,Heading,
     Flex,
@@ -23,10 +24,12 @@ const Navbar = () => {
     const toast = useToast();
    
     let token=JSON.parse(localStorage.getItem("token"))
-   
+   let userid=JSON.parse(localStorage.getItem("userid"))
+
     //logout
     const handleLogout=()=>{
       localStorage.removeItem("token")
+      localStorage.removeItem("userid")
       toast({
         title: 'Logout Successfull',
         description: "You are redirectd to Login Page",
@@ -69,6 +72,30 @@ else{
         })
         navigate("/login")
       }
+          }
+
+          //delete Account
+          const handleDelete=(userid)=>{
+            axios.delete(`http://localhost:4000/delete_user/${userid}`,{
+        headers:{
+            "Authorization":token
+        }
+    })
+    .then((res)=>{
+      navigate("/login")
+        window.location.reload()
+        toast({
+          title: 'User Deleted successfully',
+          description: "You are redirectd to all posts",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+        
+        localStorage.removeItem("token")
+      localStorage.removeItem("userid")
+      
+    })
           }
 
 
@@ -121,26 +148,27 @@ else{
 
                     <MenuItem>
                     <Link to="/">
-                Sign Up
+                    {token?"":"Sign up"}
                 </Link>
                     </MenuItem>
 
                     <MenuItem>
                     <Link to="/login">
-                Log In
+                {token?"":"Log In"}
                 </Link>
                     </MenuItem>
 
                     <MenuItem>
-                    Update Name
+                    {token?"Update Name":""}
                     </MenuItem>
 
                     <MenuItem onClick={handleLogout}> 
-                Logout
+                    
+                    {token?"Logout":""}
+                   
                     </MenuItem>
-
-                    <MenuItem>
-                    Delete Account
+                    <MenuItem onClick={()=>handleDelete(userid)}>
+                    {token?"Delete Account":""}
                     </MenuItem>
 
                   </MenuList>

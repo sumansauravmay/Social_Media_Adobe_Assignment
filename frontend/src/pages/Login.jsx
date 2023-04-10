@@ -37,7 +37,7 @@ const handleLogin=()=>{
           })
     }
     else{
-        axios.post("https://sore-blue-marlin-suit.cyclic.app/login",payload)
+        axios.post("http://localhost:4000/login",payload)
         .then((res)=>{
             console.log(res.data)
             toast({
@@ -48,7 +48,8 @@ const handleLogin=()=>{
                 isClosable: true,
               })
               localStorage.setItem("token",JSON.stringify(res.data.token))
-              navigate("/post")
+              localStorage.setItem("userid",JSON.stringify(res.data.userID))
+              navigate("/allpost")
         })
         .catch((err)=>console.log(err))
     }
