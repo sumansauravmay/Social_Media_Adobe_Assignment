@@ -28,7 +28,7 @@
 <h4 align="center">Deployed On:</h4>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="vercel" />
+  <img src="https://i.postimg.cc/sgTZd54P/netlify.jpg" alt="vercel" />
 </p>
 
 <h3 align="center"><a href="https://frontend-meenakshi176.vercel.app/"><strong>Want to see live preview »</strong></a></h3>
@@ -95,13 +95,14 @@ On This Page there is info about the site....
 Clone the project
 
 ```bash
-  git clone https://github.com/Ghanishtkhurana/brief-toes-9591.git
+  git clone https://github.com/sumansauravmay/Social_Media_Adobe_Assignment.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd brief-toes-9591
+  cd Social_Media_Adobe_Assignment
+
 ```
 
 Install dependencies for frontend as well as backend
@@ -125,9 +126,9 @@ Start the localhost server
 
 ## Deployed link
 
-### Vercel Link
+### Netlify Link
 
-[https://frontend-meenakshi176.vercel.app/](https://frontend-meenakshi176.vercel.app/)
+[https://lustrous-halva-a22bc5.netlify.app/](https://lustrous-halva-a22bc5.netlify.app/)
 
 ## Show your support
 
