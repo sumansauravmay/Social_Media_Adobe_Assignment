@@ -2,20 +2,21 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer';
 import axios from "axios";
-import {AiFillDelete } from "react-icons/ai";
+import {AiFillLike,AiFillDislike } from "react-icons/ai";
+import { useToast } from '@chakra-ui/react';
 import {
-    Box,
-    Heading,
+    Box,Flex, Modal, ModalOverlay,
+    ModalContent, ModalHeader, ModalBody, ModalCloseButton,VStack,
+    Heading,Textarea,
     Link,
     Image,
     Text,
     HStack,
-    Tag,
     Container,
     Button,
   } from '@chakra-ui/react';
   
-  let token=JSON.parse(localStorage.getItem("token"))
+  // let token=JSON.parse(localStorage.getItem("token"))
   
  
   
@@ -36,8 +37,11 @@ import {
   };
   
   const Home = () => {
-
+    const toast = useToast();
+    const [content,setContent]=useState("")
 const [data,setData]=useState([]);
+const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTitle, setSelectedTitle] = useState(null);
 
     let token=JSON.parse(localStorage.getItem("token"))
 
@@ -65,11 +69,49 @@ const handleDelete=(_id)=>{
         }
     })
     .then((res)=>{
-        alert("post deleted successfullt")
         window.location.reload()
+        toast({
+          title: 'Post Deleted successfully',
+          description: "You are redirectd to all posts",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
     })
     
 }
+
+//update title
+const handleEdit=(_id)=>{
+  const task = data.find((item) => item._id === _id);
+  setSelectedTitle(task);
+  setIsModalOpen(true);
+}
+
+
+const handleupdatefunc=(_id)=>{
+  let payload={
+      content
+  }
+  axios.patch(`https://sore-blue-marlin-suit.cyclic.app/update/${_id}`,payload,{
+    headers:{
+        "Authorization":token
+    }
+})
+  .then((res)=>{
+    window.location.reload()
+    toast({
+      title: 'Post edited successfully',
+      description: "You are redirectd to all posts",
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    })
+      console.log(res)
+  })
+  
+}
+
 
 
     return (
@@ -127,17 +169,85 @@ const handleDelete=(_id)=>{
                     fontSize="lg">
                     {item.content}
                   </Text>
-                  <BlogAuthor name="created at" date={item.createdAt} />
+                  <BlogAuthor name="Updated at" date={item.updatedAt} />
                   <br/>
 
-                  <Button bg={'green.400'}>Edit</Button>
+                  <Button bg={'green.400'} onClick={()=>handleEdit(item._id)}>Edit</Button>
                   <br/>
                   <Button onClick={()=>handleDelete(item._id)} bg={'green.400'}>Delete</Button>
+                  <br/>
+                  <Flex gap="20px" cursor={'pointer'}>
+                    <Box fontSize={30}>
+                    <AiFillLike/>
+                    </Box>
+                  
+                  <Box fontSize={30}>
+                  <AiFillDislike/>
+                  </Box>
+                  
+                  </Flex>
+                  
                 </Box>
               </Box>  
             ))
         }
        
+
+       {selectedTitle && (
+          <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Update Post</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <Box>
+
+                <Flex
+    align="center"
+    justify="center"
+    id="contact">
+    <Box
+      borderRadius="lg"
+      m={{ base: 5, md: 16, lg: 10 }}
+      p={{ base: 5, lg: 16 }}>
+            <Box
+           
+              borderRadius="lg"
+              p={8}
+              shadow="base">
+              <VStack spacing={5}>
+              <Textarea value={content} onChange={(e)=>setContent(e.target.value)}
+                          borderColor="gray.300" w="200px"
+                          _hover={{
+                            borderRadius: 'gray.300',
+                          }}
+                          placeholder="Max Length 300"
+                        />
+
+  <Button
+                  colorScheme="blue"
+                  bg="blue.400"
+                  color="white"
+                  _hover={{
+                    bg: 'blue.500',
+                  }} 
+                 onClick={()=>handleupdatefunc(selectedTitle._id)}
+                  >
+                 Update Post
+                </Button>
+              </VStack>
+            </Box>
+         
+      </Box>
+  </Flex>
+                </Box>
+              </ModalBody>
+            </ModalContent>
+          </Modal>
+        )}
+
+
+
       </Container>
       <Footer/>
       </>
