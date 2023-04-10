@@ -40,7 +40,7 @@ const handlePostNew=()=>{
     })
   }
   else{
-    axios.post("http://localhost:4000/post",payload,{ 
+    axios.post("https://sore-blue-marlin-suit.cyclic.app/post",payload,{ 
       headers: {
       "Authorization": token
     }})

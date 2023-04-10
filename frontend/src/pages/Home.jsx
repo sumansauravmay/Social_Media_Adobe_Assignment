@@ -42,7 +42,7 @@ const [data,setData]=useState([]);
     let token=JSON.parse(localStorage.getItem("token"))
 
     const getData=()=>{
-      return axios.get("http://localhost:4000/",{
+      return axios.get("https://sore-blue-marlin-suit.cyclic.app/",{
         headers: {
           "Authorization": token
         }
@@ -59,7 +59,7 @@ useEffect(()=>{
 
 //delete
 const handleDelete=(_id)=>{
-    axios.delete(`http://localhost:4000/delete/${_id}`,{
+    axios.delete(`https://sore-blue-marlin-suit.cyclic.app/delete/${_id}`,{
         headers:{
             "Authorization":token
         }
